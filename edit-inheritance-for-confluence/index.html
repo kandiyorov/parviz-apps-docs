@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Edit Inheritance for Confluence — Documentation</title><link rel="stylesheet" href="../assets/style.css"><link rel="icon" href="../assets/logo-144.png"></head>
+<body><header><div class="wrap"><a class="brand" href="../">Parviz Kandiyorov Apps</a>
+<nav><a href="../edit-inheritance-for-confluence/">Documentation</a><a href="../support/">Support &amp; SLA</a><a href="../privacy-policy/">Privacy</a></nav></div></header>
+<main class="wrap">
+<h1>Edit Inheritance for Confluence</h1>
+<p>Confluence Cloud passes <strong>view</strong> restrictions down to child pages, but not <strong>edit</strong> restrictions.
+Edit Inheritance for Confluence closes that gap: turn it on for a page, and every child page created
+under it or moved under it gets the same edit restriction automatically.</p>
+<h2>Turn it on for a page</h2>
+<ol>
+<li>Restrict who can edit the page (lock icon → "Anyone can view, only some can edit" or
+   "Only specific people can view or edit").</li>
+<li>Open the page's <strong>••• (More actions)</strong> menu → <strong>Edit inheritance</strong>.</li>
+<li>Check the list of people and groups who can edit the page, then click <strong>Turn on</strong>.</li>
+</ol>
+<p>You need permission to edit the page. If the page has no edit restriction, there is nothing to
+inherit, and the app tells you so.</p>
+<figure><img class="shot" src="../assets/01-turn-on.png" alt="The Edit inheritance dialog: check who can edit, then click Turn on."><figcaption>The Edit inheritance dialog: check who can edit, then click Turn on.</figcaption></figure>
+<h2>What happens next</h2>
+<ul>
+<li><strong>New child pages</strong> (at any depth) get the edit restriction of the nearest ancestor page that has
+  inheritance turned on, usually within 5–10 seconds of being created.</li>
+<li><strong>Pages moved under</strong> such a page get the same treatment.</li>
+<li>Copying only <strong>adds</strong> people and groups. It never removes anyone already on a child page's
+  restriction.</li>
+<li>If a child page has inheritance turned on itself, it becomes the source for its own subtree.</li>
+</ul>
+<h2>Existing child pages</h2>
+<p>Pages that already exist under the page are not changed when you turn inheritance on. To update them,
+open <strong>Edit inheritance</strong> and click <strong>Apply to existing child pages (N)</strong>. The work runs in the
+background and the dialog shows progress. Running it again is safe: pages that already match are
+left alone.</p>
+<figure><img class="shot" src="../assets/02-apply-existing.png" alt="Apply the restriction to child pages that already exist."><figcaption>Apply the restriction to child pages that already exist.</figcaption></figure>
+<h2>The app user appears in edit restrictions</h2>
+<p>When you turn inheritance on, the app adds its own user, <strong>"Edit Inheritance for Confluence"</strong>, to the
+page's edit restriction, and to its view restriction if the page restricts viewing. It also adds
+itself to the edit restriction of every child page it updates. Confluence requires this: an app can
+only change a restriction it stays part of. Please don't remove the app user from these pages, or the
+app won't be able to update their children.</p>
+<h2>Turning it off</h2>
+<p>Open <strong>Edit inheritance</strong> → <strong>Turn off</strong>. New and moved pages are no longer updated. Restrictions that
+were already copied stay as they are, and the app user stays on the page's own restrictions (remove
+it manually if you wish). Confluence administrators can see every page with inheritance
+turned on, and turn it off, under <strong>Confluence settings → Edit Inheritance</strong>.</p>
+<figure><img class="shot" src="../assets/03-admin.png" alt="Confluence settings → Edit Inheritance: every page with inheritance turned on."><figcaption>Confluence settings → Edit Inheritance: every page with inheritance turned on.</figcaption></figure>
+<h2>Limitations</h2>
+<ul>
+<li><strong>Pages only.</strong> Folders, whiteboards, databases and other content types are skipped. A page inside
+  a folder inherits from the nearest page above the folder.</li>
+<li><strong>Pages the app cannot see.</strong> If a parent page further up restricts viewing and the app is not on
+  that restriction, the app is not notified about pages below it. The dialog warns you when
+  inheritance is turned on in such a place: add the app user to that parent's view restriction.</li>
+<li><strong>Moves under view-restricted pages</strong> work once the app is on the parent's view restriction (the
+  app adds itself when you turn inheritance on). If a moved page did not pick up the restriction,
+  open the parent page's <strong>Edit inheritance</strong> dialog and click <strong>Apply to existing child pages</strong>.</li>
+<li>Only <strong>edit</strong> restrictions are copied. View restrictions are handled by Confluence itself.</li>
+</ul>
+<h2>Data the app stores</h2>
+<p>For each page with inheritance turned on, the app stores the page ID and the time it was turned on.
+For a background "apply" run, it stores counters (pages checked, updated, skipped, failed) and
+timestamps. It stores <strong>no personal data</strong>: no account IDs, names or email addresses, and no page
+content or titles. See the <a href="../privacy-policy/">Privacy Policy</a>.</p>
+<h2>Support</h2>
+<p>Email <a href="mailto:support@parviz.tj">support@parviz.tj</a>. See <a href="../support/">Support &amp; SLA</a> for response times.</p>
+</main>
+<footer><div class="wrap">Parviz Kandiyorov &middot; <a href="mailto:support@parviz.tj">support@parviz.tj</a></div></footer>
+</body></html>
